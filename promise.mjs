@@ -21,11 +21,20 @@
 // converting callback hell to promises
 console.log("Before Func Call");
 
-getUser(1)
-  .then((res) => getRepo(res.githubUser))
-  .then((res) => getCommit(res[0].repo[0]))
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err.message));
+// getUser(1)
+//   .then((res) => getRepo(res.githubUser))
+//   .then((res) => getCommit(res[0].repo[0]))
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err.message));
+
+// converting promises to async-await
+const data = async () => {
+  const user = await getUser(1);
+  const repo = await getRepo(user.githubUser);
+  const commits = await getCommits(repo[0].repo[0]);
+  console.log(commits);
+};
+data();
 
 console.log("After Func Call");
 

@@ -1,16 +1,22 @@
 console.log("Before Func Call");
 
-getUser(1, (user) => {
-  console.log("User", user);
-  getRepo(user.user, (repo) => {
-    console.log("Data", repo[0].repo);
-    getCommit(repo[0].repo[0], (commits) => {
-      console.log("Commits", commits);
-    });
-  });
-});
+getUser(1, displayUser);
 
 console.log("After Func Call");
+
+function displayCommits(commits) {
+  console.log("Commits", commits);
+}
+
+function displayRepo(repo) {
+  console.log("Data", repo[0].repo);
+  getCommit(repo[0].repo[0], displayCommits);
+}
+
+function displayUser(user) {
+  console.log("User", user);
+  getRepo(user.user, displayRepo);
+}
 
 function getUser(id, callback) {
   setTimeout(() => {

@@ -8,14 +8,14 @@ function displayCommits(commits) {
   console.log("Commits", commits);
 }
 
-function displayRepo(repo) {
-  console.log("Data", repo[0].repo);
-  getCommit(repo[0].repo[0], displayCommits);
+function displayRepo(fetchedRepo) {
+  console.log("Data", fetchedRepo);
+  getCommit(fetchedRepo[0].repo[0], displayCommits);
 }
 
 function displayUser(user) {
   console.log("User", user);
-  getRepo(user.user, displayRepo);
+  getRepo(user.githubUser, displayRepo);
 }
 
 function getUser(id, callback) {
@@ -23,7 +23,7 @@ function getUser(id, callback) {
     console.log("Getting User");
     callback({
       id,
-      user: "obaid",
+      githubUser: "obaid",
     });
   }, 2000);
 }
@@ -33,7 +33,7 @@ function getRepo(user, callback) {
     console.log("Getting Repos");
     callback([
       {
-        user,
+        githubUser: user,
         repo: ["repo1", "repo2", "repo3"],
       },
     ]);
